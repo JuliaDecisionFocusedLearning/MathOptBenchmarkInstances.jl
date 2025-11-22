@@ -2,7 +2,7 @@
 
 A Julia package for automatic download and parsing of linear, quadratic and integer programming instances.
 
-## Details
+## Principle
 
 Supported datasets:
 
@@ -15,6 +15,8 @@ The returned problem format is `QPSData` from [QPSReader.jl](https://github.com/
 
 ## Getting started
 
-To see which instances are available, call `list_instance(dataset, name)`.
+To see which instances are available, call `list_instances(dataset, name)`.
 
 To read a specific instance, call `read_instance(dataset, name)`.
+
+More details are available in the docstrings of these functions.
