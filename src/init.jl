@@ -63,5 +63,22 @@ function __init__()
             ),
         )
     )
+    # Maros-Meszaros
+    register(
+        DataDep(
+            "marosmeszaros",
+            """
+            All instances in the Maros-Meszaros QP benchmark set.
+            Source: https://www.doc.ic.ac.uk/~im/#DATA.
+            Compressed download size: 28.1 MB.
+            Decompressed size: ??""",
+            [
+                "http://www.doc.ic.ac.uk/%7Eim/QPDATA1.ZIP",
+                "http://www.doc.ic.ac.uk/%7Eim/QPDATA2.ZIP",
+                "http://www.doc.ic.ac.uk/%7Eim/QPDATA3.ZIP",
+            ];
+            post_fetch_method = [unpack, unpack, unpack]
+        )
+    )
     return nothing
 end

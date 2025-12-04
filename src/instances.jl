@@ -10,12 +10,17 @@ Return a tuple `(data, path)` where `data isa QPSReader.QPSData` is an object cr
 - [`Dataset`](@ref)
 """
 function read_instance(dataset::Dataset, name::String)
+    if !(name in list_instances(dataset))
+        throw(ArgumentError("Instance $name is not available in dataset $dataset: please use `list_instances` to find valid instance names."))
+    end
     if dataset == MIPLIB2017
         return read_miplib2017_instance(name)
     elseif dataset == Netlib
         return read_netlib_instance(name)
     elseif dataset == MittelmannLP
         return read_mittelmann_lp_instance(name)
+    elseif dataset == MarosMeszaros
+        return read_marosmeszaros_instance(name)
     end
 end
 
@@ -49,14 +54,24 @@ function read_mittelmann_lp_instance(name::String)
     mps_bz2_path2 = joinpath(folder_path, "$name.bz2")
     if ispath(mps_bz2_path1)
         return read_mps(mps_bz2_path1; scratch_subfolder = "mittelman-lp")
-    else
+    elseif ispath(mps_bz2_path2)
         return read_mps(mps_bz2_path2; scratch_subfolder = "mittelman-lp")
     end
 end
 
-function read_mps(path::String; scratch_subfolder::String, mpsformat::Symbol = :free)
+function read_marosmeszaros_instance(name::String)
+    folder_path = datadep"marosmeszaros"
+    qps_path = joinpath(folder_path, "$name.QPS")
+    return read_mps(qps_path)
+end
+
+function read_mps(
+        path::String;
+        scratch_subfolder::Union{String, Nothing} = nothing,
+        mpsformat::Symbol = :free
+    )
     name = splitext(splitext(splitpath(path)[end])[1])[1]
-    if !isdir(joinpath(MPS_SCRATCH, scratch_subfolder))
+    if !isnothing(scratch_subfolder) && !isdir(joinpath(MPS_SCRATCH, scratch_subfolder))
         mkdir(joinpath(MPS_SCRATCH, scratch_subfolder))
     end
     if endswith(path, ".gz") || endswith(path, ".bz2")
@@ -70,15 +85,18 @@ function read_mps(path::String; scratch_subfolder::String, mpsformat::Symbol = :
                 compressed = CodecBzip2.read(path)
                 contents = String(CodecBzip2.transcode(CodecBzip2.Bzip2Decompressor, compressed))
             elseif endswith(path, ".bz2")
-                throw(ArgumentError("File at $path not supported"))
+                throw(ArgumentError("File at $path not supported (not a compressed MPS file).\nIf you know how to handle these files, please open an issue at <https://github.com/JuliaDecisionFocusedLearning/MathOptBenchmarkInstances.jl/issues>."))
             end
             open(mps_path, "w") do f
                 write(f, contents)
             end
         end
-    else
-        @assert endswith(path, ".mps") || endswith(path, ".SIF")
+    elseif endswith(lowercase(path), ".mps") ||
+            endswith(lowercase(path), ".qps") ||
+            endswith(lowercase(path), ".sif")
         mps_path = path
+    else
+        throw(ArgumentError("Invalid file extension for $(splitpath(path)[end])"))
     end
 
     qps_data = with_logger(NullLogger()) do

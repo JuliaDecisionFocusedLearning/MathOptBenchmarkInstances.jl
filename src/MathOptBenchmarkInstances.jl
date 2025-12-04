@@ -13,7 +13,7 @@ include("lists.jl")
 include("mittelmann.jl")
 include("init.jl")
 
-export Dataset, MIPLIB2017, Netlib, MittelmannLP
+export Dataset, MIPLIB2017, Netlib, MittelmannLP, MarosMeszaros
 export read_instance
 export list_instances
 

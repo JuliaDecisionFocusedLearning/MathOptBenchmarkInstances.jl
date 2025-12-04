@@ -14,7 +14,10 @@ ENV["DATADEPS_ALWAYS_ACCEPT"] = true
     @testset "MIPLIB 2017" begin
         include("miplib2017.jl")
     end
-    @testset "Mittelmann" begin
+    @testset "Mittelmann LP" begin
         include("mittelmann.jl")
+    end
+    @testset "Maros-Meszaros" begin
+        include("marosmeszaros.jl")
     end
 end

@@ -14,6 +14,8 @@ function list_instances(dataset::Dataset)
         return list_netlib_instances()
     elseif dataset == MittelmannLP
         return list_mittelmann_lp_instances()
+    elseif dataset == MarosMeszaros
+        return list_marosmeszaros_instances()
     end
 end
 
@@ -38,4 +40,8 @@ end
 function list_mittelmann_lp_instances()
     all_names = reduce(vcat, MITTELMANN_LP_INSTANCES)
     return map(n -> string(chopsuffix(split(n, "/")[end], ".mps")), all_names)
+end
+
+function list_marosmeszaros_instances()
+    return map(n -> string(chopsuffix(n, ".QPS")), readdir(datadep"marosmeszaros"))
 end

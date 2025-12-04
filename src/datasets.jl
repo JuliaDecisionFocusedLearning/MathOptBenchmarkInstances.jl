@@ -8,8 +8,9 @@ Possible values:
 - [`MIPLIB2017`](@ref)
 - [`Netlib`](@ref)
 - [`MittelmannLP`](@ref)
+- [`MarosMeszaros`](@ref)
 """
-@enum Dataset MIPLIB2017 Netlib MittelmannLP
+@enum Dataset MIPLIB2017 Netlib MittelmannLP MarosMeszaros
 
 """
     MIPLIB2017
@@ -37,3 +38,12 @@ Linear Programs from the Mittelmann benchmark dataset.
 Source: <https://plato.asu.edu/ftp/lptestset/>.
 """
 MittelmannLP
+
+"""
+    MarosMeszaros
+
+Quadratic Programs from the Maros-Meszaros benchmark dataset.
+
+Source: <https://www.doc.ic.ac.uk/~im/#DATA>.
+"""
+MarosMeszaros

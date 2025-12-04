@@ -17,8 +17,8 @@ Please read and abide by the license of the dataset you plan to use.
 
 ### QP
 
+- [x] [Maros-Meszaros](https://www.doc.ic.ac.uk/~im/#DATA)
 - [ ] [QPLIB](https://qplib.zib.de/)
-- [ ] [Maros-Meszaros](https://www.doc.ic.ac.uk/~im/#DATA)
 
 ## Getting started
 
