@@ -1,5 +1,10 @@
 # MathOptBenchmarkInstances.jl
 
+[![Build Status](https://github.com/JuliaDecisionFocusedLearning/MathOptBenchmarkInstances.jl/actions/workflows/test.yml/badge.svg?branch=main)](https://github.com/JuliaDecisionFocusedLearning/MathOptBenchmarkInstances.jl/actions/workflows/test.yml?query=branch%3Amain)
+[![Coverage](https://codecov.io/gh/JuliaDecisionFocusedLearning/MathOptBenchmarkInstances.jl/branch/main/graph/badge.svg)](https://app.codecov.io/gh/JuliaDecisionFocusedLearning/MathOptBenchmarkInstances.jl)
+[![code style: runic](https://img.shields.io/badge/code_style-%E1%9A%B1%E1%9A%A2%E1%9A%BE%E1%9B%81%E1%9A%B2-black)](https://github.com/fredrikekre/Runic.jl)
+[![Aqua QA](https://raw.githubusercontent.com/JuliaTesting/Aqua.jl/master/badge.svg)](https://github.com/JuliaTesting/Aqua.jl)
+
 A Julia package for automatic download and parsing of linear, quadratic and integer programming instances.
 
 ## Datasets
