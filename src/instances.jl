@@ -30,7 +30,6 @@ function read_miplib2017_instance(name::String)
     else
         datadep"miplib2017-collection"
     end
-    name = lowercase(name)
     mps_gz_path = joinpath(folder, "$name.mps.gz")
     return read_mps(mps_gz_path; scratch_subfolder = "miplib2017")
 end

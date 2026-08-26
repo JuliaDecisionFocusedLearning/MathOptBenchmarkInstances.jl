@@ -1,6 +1,6 @@
 name = "MathOptBenchmarkInstances"
 uuid = "f7f8d0a1-fd34-491e-a7ac-a4cf52f91fe5"
-version = "0.1.1"
+version = "0.1.2"
 authors = ["Guillaume Dalle"]
 
 [workspace]
