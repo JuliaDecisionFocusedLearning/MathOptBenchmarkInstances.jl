@@ -11,3 +11,6 @@ miplib_benchmark_list = MathOptBenchmarkInstances.list_miplib2017_instances(; be
 for name in miplib_benchmark_list[1:10]
     @test read_instance(MIPLIB2017, name) isa Tuple{QPSData, String}
 end
+
+# mixed-case
+@test read_instance(MIPLIB2017, "beasleyC3") isa Tuple{QPSData, String}
